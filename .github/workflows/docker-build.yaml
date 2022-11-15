@@ -12,44 +12,44 @@ jobs:
     - uses: actions/checkout@v2
       name: Checkout code
 
-    - uses: mr-smithers-excellent/docker-build-push@v4
+    - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for reverseproxy
       with:
         image: burka9/udagram-reverseproxy
-        tags: v5, latest
+        tags: v5,latest
         registry: docker.io
         directory: udagram-reverseproxy
         dockerfile: udagram-reverseproxy/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
-    - uses: mr-smithers-excellent/docker-build-push@v4
+    - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for feed
       with:
         image: burka9/udagram-api-feed
-        tags: v5
+        tags: v5,latest
         registry: docker.io
         directory: udagram-api-feed
         dockerfile: udagram-api-feed/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - uses: mr-smithers-excellent/docker-build-push@v4
+    - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for user
       with:
         image: burka9/udagram-api-user
-        tags: v5, latest
+        tags: v5,latest
         registry: docker.io
         directory: udagram-api-user
         dockerfile: udagram-api-user/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
-    - uses: mr-smithers-excellent/docker-build-push@v4
+    - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for frontend
       with:
         image: burka9/udagram-frontend
-        tags: local, latest
+        tags: local,latest
         registry: docker.io
         directory: udagram-frontend
         dockerfile: udagram-frontend/Dockerfile
