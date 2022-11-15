@@ -15,7 +15,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v4
       name: Build and push docker image for reverseproxy
       with:
-        image: burka9/udagram-reverseproxy
+        image: burka9/udagram-reverseproxy:v5
         registry: docker.io
         directory: udagram-reverseproxy
         dockerfile: udagram-reverseproxy/Dockerfile
@@ -25,7 +25,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v4
       name: Build and push docker image for feed
       with:
-        image: burka9/udagram-api-feed
+        image: burka9/udagram-api-feed:v5
         registry: docker.io
         directory: udagram-api-feed
         dockerfile: udagram-api-feed/Dockerfile
@@ -35,7 +35,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v4
       name: Build and push docker image for user
       with:
-        image: burka9/udagram-api-user
+        image: burka9/udagram-api-user:v5
         registry: docker.io
         directory: udagram-api-user
         dockerfile: udagram-api-user/Dockerfile
@@ -45,7 +45,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v4
       name: Build and push docker image for frontend
       with:
-        image: burka9/udagram-frontend
+        image: burka9/udagram-frontend:local
         registry: docker.io
         directory: udagram-frontend
         dockerfile: udagram-frontend/Dockerfile
