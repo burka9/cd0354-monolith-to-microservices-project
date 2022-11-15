@@ -82,19 +82,23 @@ router.post('/login', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
   try {
+    console.log(req.body);
     const email = req.body.email;
     const plainTextPassword = req.body.password;
 
     if (!email || !EmailValidator.validate(email)) {
+      console.log('no email');
       return res.status(400).send({auth: false, message: 'Email is missing or malformed.'});
     }
 
     if (!plainTextPassword) {
+      console.log('password required');
       return res.status(400).send({auth: false, message: 'Password is required.'});
     }
 
     const user = await User.findByPk(email);
     if (user) {
+      console.log('user exists');
       return res.status(422).send({auth: false, message: 'User already exists.'});
     }
 
