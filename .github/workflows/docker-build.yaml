@@ -20,8 +20,6 @@ jobs:
         registry: docker.io
         directory: udagram-reverseproxy
         dockerfile: udagram-reverseproxy/Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
     
     - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for feed
@@ -40,8 +38,6 @@ jobs:
         registry: docker.io
         directory: udagram-api-user
         dockerfile: udagram-api-user/Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
     
     - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for frontend
@@ -51,5 +47,3 @@ jobs:
         registry: docker.io
         directory: udagram-frontend
         dockerfile: udagram-frontend/Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
