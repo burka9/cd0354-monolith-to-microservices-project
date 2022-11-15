@@ -81,34 +81,38 @@ router.post('/login', async (req: Request, res: Response) => {
 
 
 router.post('/', async (req: Request, res: Response) => {
-  const email = req.body.email;
-  const plainTextPassword = req.body.password;
+  try {
+    const email = req.body.email;
+    const plainTextPassword = req.body.password;
 
-  if (!email || !EmailValidator.validate(email)) {
-    return res.status(400).send({auth: false, message: 'Email is missing or malformed.'});
+    if (!email || !EmailValidator.validate(email)) {
+      return res.status(400).send({auth: false, message: 'Email is missing or malformed.'});
+    }
+
+    if (!plainTextPassword) {
+      return res.status(400).send({auth: false, message: 'Password is required.'});
+    }
+
+    const user = await User.findByPk(email);
+    if (user) {
+      return res.status(422).send({auth: false, message: 'User already exists.'});
+    }
+
+    const generatedHash = await generatePassword(plainTextPassword);
+
+    const newUser = await new User({
+      email: email,
+      passwordHash: generatedHash,
+    });
+
+    const savedUser = await newUser.save();
+
+
+    const jwt = generateJWT(savedUser);
+    res.status(201).send({token: jwt, user: savedUser.short()});
+  } catch(e) {
+    console.log(e);
   }
-
-  if (!plainTextPassword) {
-    return res.status(400).send({auth: false, message: 'Password is required.'});
-  }
-
-  const user = await User.findByPk(email);
-  if (user) {
-    return res.status(422).send({auth: false, message: 'User already exists.'});
-  }
-
-  const generatedHash = await generatePassword(plainTextPassword);
-
-  const newUser = await new User({
-    email: email,
-    passwordHash: generatedHash,
-  });
-
-  const savedUser = await newUser.save();
-
-
-  const jwt = generateJWT(savedUser);
-  res.status(201).send({token: jwt, user: savedUser.short()});
 });
 
 router.get('/', async (req: Request, res: Response) => {
