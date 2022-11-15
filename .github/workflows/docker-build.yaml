@@ -31,8 +31,6 @@ jobs:
         registry: docker.io
         directory: udagram-api-feed
         dockerfile: udagram-api-feed/Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - uses: mr-smithers-excellent/docker-build-push@v5
       name: Build and push docker image for user
