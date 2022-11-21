@@ -49,7 +49,7 @@ jobs:
       name: Build and push docker image for frontend
       with:
         image: burka9/udagram-frontend
-        tags: v7b,latest
+        tags: v8,latest
         registry: docker.io
         directory: udagram-frontend
         dockerfile: udagram-frontend/Dockerfile
