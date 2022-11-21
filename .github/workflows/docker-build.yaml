@@ -16,7 +16,7 @@ jobs:
       name: Build and push docker image for reverseproxy
       with:
         image: burka9/udagram-reverseproxy
-        tags: v7,latest
+        tags: v8,latest
         registry: docker.io
         directory: udagram-reverseproxy
         dockerfile: udagram-reverseproxy/Dockerfile
@@ -27,7 +27,7 @@ jobs:
       name: Build and push docker image for feed
       with:
         image: burka9/udagram-api-feed
-        tags: v7,latest
+        tags: v8,latest
         registry: docker.io
         directory: udagram-api-feed
         dockerfile: udagram-api-feed/Dockerfile
@@ -38,7 +38,7 @@ jobs:
       name: Build and push docker image for user
       with:
         image: burka9/udagram-api-user
-        tags: v7,latest
+        tags: v8,latest
         registry: docker.io
         directory: udagram-api-user
         dockerfile: udagram-api-user/Dockerfile
@@ -49,7 +49,7 @@ jobs:
       name: Build and push docker image for frontend
       with:
         image: burka9/udagram-frontend
-        tags: v7a,latest
+        tags: v7b,latest
         registry: docker.io
         directory: udagram-frontend
         dockerfile: udagram-frontend/Dockerfile
