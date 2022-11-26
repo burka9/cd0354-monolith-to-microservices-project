@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-api-feed
+  labels:
+    app: backend-api-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-api-feed
+  template:
+    metadata:
+      labels:
+        app: backend-api-feed
+    spec:
+      containers:
+      - name: backend-api-feed
+        image: burka9/udagram-api-feed:v8
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        envFrom: 
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-config
+          - secretRef:
+              name: aws-secret
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
